@@ -5,6 +5,7 @@ class c_home extends Component {
         return (
             <div>
                 <h1 className="heading">Hi from home page</h1>
+                <p>This is dummy text.</p>
             </div>
         )
     }
