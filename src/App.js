@@ -5,8 +5,7 @@ import F_Home from './Components/f_home';
 function App() {
   return (
     <div className="App">
-      <C_Home/>
-      <F_Home/>
+      <h1>Hello World</h1>
     </div>
   );
 }
