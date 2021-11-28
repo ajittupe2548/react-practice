@@ -6,7 +6,6 @@ function App() {
   return (
     <div className="App">
       <C_Home/>
-      <F_Home/>
     </div>
   );
 }
