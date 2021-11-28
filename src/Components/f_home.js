@@ -1,9 +1,9 @@
 import React from 'react'
 
-function f_home() {
+function f_home(props) {
     return (
         <div>
-            <h1>Hi from functional home page functional</h1>
+            <h1>Hi {props.name}</h1>
         </div>
     )
 }

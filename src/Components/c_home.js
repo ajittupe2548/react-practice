@@ -4,7 +4,7 @@ class c_home extends Component {
     render() {
         return (
             <div>
-                <h1 className="heading">Hi from home page class</h1>
+                <h1 className="heading">Hi {this.props.name}</h1>
             </div>
         )
     }
