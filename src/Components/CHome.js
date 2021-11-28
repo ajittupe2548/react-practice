@@ -22,16 +22,9 @@ class CHome extends Component {
     }
 
     render() {
-        let button;
-        if(this.state.isLoggedIn){
-            button = <button onClick={this.handleLogoutClick}>Logout</button>
-        }
-        else{
-            button = <button onClick={this.handleLoginClick}>Login</button>
-        }
         return (
             <div>
-                {button}
+                {this.state.isLoggedIn ? <button onClick={this.handleLogoutClick}>Logout</button> : <button onClick={this.handleLoginClick}>Login</button>}
             </div>
         )
     }
