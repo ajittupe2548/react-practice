@@ -5,8 +5,8 @@ import F_Home from './Components/f_home';
 function App() {
   return (
     <div className="App">
-      <C_Home/>
-      <F_Home/>
+      <C_Home name="Ajit"/>
+      {/* <F_Home/> */}
     </div>
   );
 }
