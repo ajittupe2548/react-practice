@@ -1,9 +1,10 @@
 import React from 'react'
+import FComponentA from './FComponentA'
 
 function FHome() {
     return (
         <div>
-            <h1>Hi from functional home page functional</h1>
+            <FComponentA/>
         </div>
     )
 }
