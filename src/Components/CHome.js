@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import ClickCounter from './ClickCounter';
+import HoverCounter from './HoverCounter';
 
 class CHome extends Component {
     render() {
         return (
             <div>
-                <h1 className="heading">Hi from home page class</h1>
+                <ClickCounter name="Ajit"/>
+                <HoverCounter/>
             </div>
         )
     }
