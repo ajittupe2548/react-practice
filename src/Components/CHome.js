@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 
 class CHome extends Component {
+    constructor(props) {
+        super(props)
+
+        if(this.props.heroName=="Joker") {
+            throw ("Joker is not hero")
+        }
+    }
+    
     render() {
         return (
-            <div>
-                <h1 className="heading">Hi from home page class</h1>
-            </div>
+            <h1 className="heading">Hi from {this.props.heroName}</h1>
         )
     }
 }
