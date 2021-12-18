@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
 
 function FHome() {
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    },[])
     return (
         <div>
-            <h1>Hi from functional home page functional</h1>
+            <input ref={inputRef} type="text"/>
         </div>
     )
 }
