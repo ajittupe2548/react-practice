@@ -2,9 +2,16 @@ import React, { useState } from 'react'
 
 // Functional component
 const MemoExample = React.memo(function FHome(props) {
+    // React.createElement
+    const createElement = React.createElement("h1",{class:"heading"},"Ajit");
+    // React.createFactory
+    var div = React.createFactory('div');
+    var reactDivElement = div(props, "Ajit");
     return (
         <div>
             Memo
+            {createElement}
+            {reactDivElement}
         </div>
     )
 })
