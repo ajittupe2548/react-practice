@@ -1,10 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
+
+// Component creation with React.Component
+class ComponentExample extends Component {
+    render() {
+        return (
+            <div>ComponentExample</div>
+        )
+    }
+}
+
+// Component creation with React.PureComponent
+class PureComponentExample extends PureComponent {
+    render() {
+        return (
+            <div>PureComponentExample</div>
+        )
+    }
+}
 
 class CHome extends Component {
     render() {
         return (
             <div>
-                <h1 className="heading">Hi from home page class</h1>
+                <ComponentExample />
+                <PureComponentExample />
             </div>
         )
     }

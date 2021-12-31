@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 
+// Functional component
+const MemoExample = React.memo(function FHome(props) {
+    return (
+        <div>
+            Memo
+        </div>
+    )
+})
+
+const functionExample = function FunctionalExample(props) {
+    return (
+        <div>
+            Functional
+        </div>
+    )
+}
+
+// Functional component
 function FHome() {
     return (
         <div>
-            <h1>Hi from functional home page functional</h1>
+            {functionExample(1)}
+            <MemoExample count={1}/>
         </div>
     )
 }
