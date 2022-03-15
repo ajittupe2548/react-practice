@@ -9,6 +9,7 @@ class CHome extends Component {
         }
         this.btnRef = React.createRef();
         this.handleClick = this.handleClick.bind(this);
+        console.log(`*****Output is :  => CHome => constructor => constructor`)
     }
 
     componentDidMount() {
