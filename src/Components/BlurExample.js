@@ -45,7 +45,7 @@ export default class BlurExample extends React.Component {
             aria-haspopup="true"
             aria-expanded={this.state.isOpen}
             >
-            Select an option
+            Select an option blur example
             </button>
             {this.state.isOpen && (
             <ul>

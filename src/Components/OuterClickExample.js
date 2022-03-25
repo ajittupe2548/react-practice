@@ -37,7 +37,7 @@ class OuterClickExample extends React.Component {
   render() {
     return (
       <div ref={this.toggleContainer}>
-        <button onClick={this.onClickHandler}>Select an option</button>
+        <button onClick={this.onClickHandler}>Select an option Outer click</button>
         {this.state.isOpen && (
           <ul>
             <li>Option 1</li>

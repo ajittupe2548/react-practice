@@ -8,6 +8,10 @@ class CHome extends Component {
             <div>
                 <h1 className="heading">Hi from home page class</h1>
                 <BlurExample/>
+                <BlurExample/>
+                <BlurExample/>
+                <OuterClickExample />
+                <OuterClickExample />
                 <OuterClickExample />
             </div>
         )
