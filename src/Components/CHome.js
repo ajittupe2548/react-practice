@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 
 class CHome extends Component {
     render() {
+        const { greetings, sum, isMobile } = this.props;
         return (
-            <div>
-                <h1 className="heading">Hi from home page class</h1>
-            </div>
+            // React.createElement method instead of JSX
+            React.createElement("div", null, React.createElement("h1", {className: "heading"}, greetings || sum || isMobile && 'Mobile'))
         )
     }
 }
