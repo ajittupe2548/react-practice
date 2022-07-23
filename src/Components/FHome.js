@@ -1,5 +1,8 @@
 import React from 'react'
 
+// Lists and Keys
+// Rendering Multiple Components - You can build collections of elements and include them in JSX using curly braces {}
+
 function ListItem(props) {
     // Correct! There is no need to specify the key here:
     return <li>{props.value}</li>;
