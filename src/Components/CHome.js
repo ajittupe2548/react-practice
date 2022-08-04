@@ -40,14 +40,31 @@ class CHome extends Component {
 
     render() {
         return (
-            <Dialog title="Mars Exploration Program"
-                message="How should we refer to you?">
+            <>
+                <Dialog title="Mars Exploration Program"
+                    message="How should we refer to you?">
+                    <input value={this.state.login}
+                        onChange={this.handleChange} />
+                    <button onClick={this.handleSignUp}>
+                        Sign Me Up!
+                    </button>
+                </Dialog>
+                <InheritanceExample />
+            </>
+        )
+    }
+}
+
+class InheritanceExample extends CHome {
+    render() {
+        return (
+            <>
                 <input value={this.state.login}
-                    onChange={this.handleChange} />
+                        onChange={this.handleChange} />
                 <button onClick={this.handleSignUp}>
-                    Sign Me Up!
-                </button>
-            </Dialog>
+                        Sign Me Up With Inheritance!
+                    </button>
+            </>
         )
     }
 }
