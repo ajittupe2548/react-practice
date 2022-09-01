@@ -8,7 +8,7 @@ class CHome extends Component {
             throw ("Joker is not hero")
         }
     }
-    
+
     render() {
         return (
             <h1 className="heading">Hi from {this.props.heroName}</h1>
