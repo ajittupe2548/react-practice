@@ -2,9 +2,7 @@ import React from 'react'
 
 function FRInput({ innerRef, name }) {
     return (
-        <div>
-            <input type="text" ref={innerRef} />
-        </div>
+        <input type="text" ref={innerRef} />
     )
 }
 
