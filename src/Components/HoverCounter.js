@@ -14,4 +14,5 @@ class HoverCounter extends Component {
     }
 }
 
+HoverCounter.displayName = "HoverCounter";
 export default withCounter(HoverCounter,10);

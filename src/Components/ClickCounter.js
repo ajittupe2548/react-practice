@@ -12,4 +12,5 @@ class ClickCounter extends Component {
     }
 }
 
+ClickCounter.displayName = "ClickCounter";
 export default withCounter(ClickCounter,5);
