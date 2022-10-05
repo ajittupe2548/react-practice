@@ -11,7 +11,7 @@ import ReactDOM from 'react-dom'
 class PortalDemo extends Component {
     render() {
         return ReactDOM.createPortal(
-            <h3>This text is from portal demo component.</h3>,
+            <><h3>This text is from portal demo component.</h3>{this.props.children}</>,
             document.getElementById("portalRoot")
         )
     }
