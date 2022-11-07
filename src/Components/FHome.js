@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
-function FHome() {
+function FHome({name}) {
+    const [count, setCount] = useState(1);
+
+    const tick = () => {
+        setCount(prevState => prevState+1)
+    }
+
+    useEffect(() => {
+        setInterval(tick, 1000);
+    }, []);
+
     return (
         <div>
-            <h1>Hi from functional home page functional</h1>
+            <h1>functional - {name} - {count}</h1>
         </div>
     )
 }
