@@ -6,6 +6,7 @@ class CHome extends Component {
         this.state = {
             value: '',
         }
+        // Refs are created using React.createRef() and attached to React elements via the ref attribute.
         this.inputRef = React.createRef();
     }
 
@@ -20,6 +21,7 @@ class CHome extends Component {
     }
 
     handleFocus = () => {
+        // When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref.
         this.inputRef.current.focus();
     }
 
