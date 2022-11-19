@@ -1,8 +1,8 @@
 // @flow
-import React, { Component } from 'react'
+import * as React from 'react'
 
-class c_home extends Component {
-    render() {
+class c_home extends React.Component<{}> {
+    render(): React.Node {
         return (
             <div>
                 <h1 className="heading">Hi from home page class</h1>
