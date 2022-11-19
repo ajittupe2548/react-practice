@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 
-class c_home extends React.Component<{}> {
+class CHome extends React.Component<{}> {
     render(): React.Node {
         return (
             <div>
@@ -11,4 +11,4 @@ class c_home extends React.Component<{}> {
     }
 }
 
-export default c_home;
+export default CHome;
