@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-class c_home extends Component {
+class CHome extends Component {
     constructor(props) {
         super(props)
 
@@ -18,4 +18,4 @@ class c_home extends Component {
     }
 }
 
-export default c_home;
+export default CHome;

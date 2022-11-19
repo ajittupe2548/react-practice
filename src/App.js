@@ -1,5 +1,5 @@
 import './App.css';
-import C_Home from './Components/c_home';
+import CHome from './Components/CHome';
 
 // StrictMode is a tool for highlighting potential problems in an application. Like Fragment, StrictMode does not render any visible UI. It activates additional checks and warnings for its descendants.
 // Note: Strict mode checks are run in development mode only; they do not impact the production build.
@@ -15,8 +15,7 @@ import C_Home from './Components/c_home';
 function App() {
   return (
     <div className="App">
-      <C_Home/>
-      {/* <F_Home/> */}
+      <CHome/>
     </div>
   );
 }
