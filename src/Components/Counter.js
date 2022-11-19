@@ -9,11 +9,12 @@ class Counter extends Component {
         }
     }
 
-    incrementCount = () => {
+    incrementCount = (value) => {
         this.setState({
-            count: this.state.count + 1,
+            count: this.state.count + value,
         })
     }
+
     render() {
         return (
             <div>
