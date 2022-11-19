@@ -1,6 +1,6 @@
 import React from 'react'
 
-function f_home() {
+function FHome() {
     return (
         <div>
             <h1>Hi from functional home page functional</h1>
@@ -8,4 +8,4 @@ function f_home() {
     )
 }
 
-export default f_home;
+export default FHome;

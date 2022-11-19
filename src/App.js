@@ -1,12 +1,10 @@
 import './App.css';
-import C_Home from './Components/c_home';
-import F_Home from './Components/f_home';
+import CHome from './Components/CHome';
 
 function App() {
   return (
     <div className="App">
-      <C_Home/>
-      {/* <F_Home/> */}
+      <CHome/>
     </div>
   );
 }
