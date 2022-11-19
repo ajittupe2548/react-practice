@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 
-class c_home extends Component {
+class CHome extends Component {
     render() {
         return (
             <div>
@@ -11,12 +11,12 @@ class c_home extends Component {
     }
 }
 
-c_home.propTypes = {
+CHome.propTypes = {
     name: PropTypes.string
 }
 
-c_home.defaultProps = {
+CHome.defaultProps = {
     name: 'Stranger'
 };
 
-export default c_home;
+export default CHome;
