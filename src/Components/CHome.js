@@ -21,12 +21,17 @@ B) Updating - The next phase in the lifecycle is when a component is updated. A 
 C) Unmounting - The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it.
     1) componentWillUnmount() - called when the component is about to be removed from the DOM. */
 
+/*
+If we want to update state based on prop then it would be better to use getDerivedStateFromProps instead of setting state in componentDidUpdate to save one extra re-render. Like in the following exmaple counter and stateCounter render component once and counter1 & stateCounter1 will re-render component twice.
+*/
+
 class CHome extends Component {
     constructor(props) {
         super(props)
         this.state = {
             message: 'Please click',
             stateCounter: this.props.counter,
+            stateCounter1: this.props.counter1,
         }
         this.btnRef = React.createRef();
         this.handleClick = this.handleClick.bind(this);
@@ -39,7 +44,7 @@ class CHome extends Component {
 
     static getDerivedStateFromProps(nextProps, prevState) {
         console.log(`*****Output is :  => CHome => getDerivedStateFromProps => getDerivedStateFromProps:`, nextProps, prevState);
-        if (nextProps.counter !== prevState.counter) {
+        if (nextProps.counter !== prevState.stateCounter) {
             return { stateCounter: nextProps.counter };
         }
         return null;
@@ -57,7 +62,7 @@ class CHome extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         console.log(`*****Output is :  => CHome => shouldComponentUpdate => shouldComponentUpdate`);
 
-        return ((nextProps.counter !== this.props.counter) || (nextState.stateCounter !== this.state.stateCounter) || (nextState.message !== this.state.message));
+        return ((nextProps.counter !== this.props.counter) || (nextState.stateCounter !== this.state.stateCounter) || (nextState.message !== this.state.message) || (nextProps.counter1 !== this.props.counter1) || (nextState.stateCounter1 !== this.state.stateCounter1));
     }
 
     /* UNSAFE_componentWillUpdate() {
@@ -71,6 +76,9 @@ class CHome extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log(`*****Output is :  => CHome => componentDidUpdate => componentDidUpdate`, prevProps, prevState, snapshot);
+        if (prevProps.counter1 !== this.props.counter1) {
+            this.setState({ stateCounter1: this.props.counter1 })
+        }
     }
 
     componentWillUnmount() {
@@ -89,6 +97,7 @@ class CHome extends Component {
             <div>
                 <h1 className="heading">Message - {this.state.message}</h1>
                 <h2>Counter - {this.state.stateCounter}</h2>
+                <h2>Counter1 - {this.state.stateCounter1}</h2>
                 <button ref={this.btnRef}>Update message</button>
             </div>
         )
