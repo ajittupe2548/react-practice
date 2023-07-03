@@ -31,4 +31,10 @@ What is async and defer?
 async and defer are attributes that can be added to script tags in HTML to control how JavaScript files are loaded and executed.
 When you include the async attribute in a script tag, it means that the script will be downloaded asynchronously while the HTML parsing continues. The script will execute as soon as it finishes downloading, regardless of whether the HTML parsing is complete or not.
 When you include the defer attribute in a script tag, it means that the script will be downloaded asynchronously, similar to async. However, the script execution is deferred until the HTML parsing is complete. Scripts with the defer attribute will be executed in the order they appear in the HTML.
+
+Why we add stylesheet in head?
+Placing the stylesheet in the <head> allows the browser to start fetching and parsing the CSS file early in the rendering process. This ensures that the styles are ready to be applied to the content as soon as it is rendered, resulting in a faster and smoother user experience.
+
+Why is it important to put the script tag at the end and not in the start?
+The reason it was recommended to put <script> tags at the end of the <body> was so the scripts wouldn't stop the browser from parsing the HTML. When a browser gets to a <script> tag it stops everything else and loads the file for that <script> tag and then evaluates it.
 */
