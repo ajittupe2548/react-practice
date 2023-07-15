@@ -1,0 +1,19 @@
+{
+  "name": "namaste-react-practice",
+  "version": "1.0.0",
+  "description": "Alternative method to create react app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajittupe2548/react-practice.git"
+  },
+  "author": "Ajit Tupe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajittupe2548/react-practice/issues"
+  },
+  "homepage": "https://github.com/ajittupe2548/react-practice#readme"
+}
