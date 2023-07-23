@@ -12,4 +12,13 @@ const reactHeadingContainer = (
     </div>
 );
 
-reactRoot.render(reactHeadingContainer);
+const HeaderComponent = () => {
+    return (
+        <>
+            {reactHeadingContainer}
+            <h2 className="react-heading">Hello World 3 from React!</h2>
+        </>
+    );
+}
+
+reactRoot.render(<HeaderComponent />);
