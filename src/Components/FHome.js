@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+// This hook allows you to add state to functional components. It returns a stateful value and a function to update that value.
+
 function FHome() {
     // We initialize our state by calling useState in our function component.
     // useState accepts an initial state and returns two values:
