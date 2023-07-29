@@ -1,5 +1,8 @@
 import React, { useState, createContext, useContext } from 'react'
 
+// The useContext hook is a feature provided by React that allows components to consume data from a Context without explicitly passing it down through props.
+// This hook allows you to consume values from a React context in a functional component. It replaces the need for a Consumer component in class components.
+
 function FHome() {
     return (
         <div>
