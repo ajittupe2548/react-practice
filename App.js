@@ -1,86 +1,103 @@
-import React, { Component, useContext, useState } from 'react';
-import ReactDOM from 'react-dom/client';
-import NameContext from './NameContext';
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store from "./redux/store";
+import { updateName, addSkill, removeSkill } from "./redux/userSlice";
+import { increment, decrement, reset } from "./redux/counterSlice";
 
 const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
 
 const Parent = () => {
-    const [name, setName] = useState("Abc");
+    const count = useSelector((store) => store.counter.value);
     return (
         <>
-            <NameContext.Provider value={{ name: name, setName: (value) => setName(value) }}>
-                <Child1 />
-            </NameContext.Provider>
+            <Child1 />
             <Child2 />
+            <p>Count: {count}</p>
         </>
-    )
-}
+    );
+};
 
 const Child1 = () => {
     return (
         <>
             <GrandChild1 />
         </>
-    )
-}
+    );
+};
 
 const GrandChild1 = () => {
-    const { name, setName } = useContext(NameContext);
-    const [value, setValue] = useState("");
+    const name = useSelector((store) => store.user.name);
+    const dispatch = useDispatch();
+    const [value, setValue] = useState(name);
+    const [skill, setSkill] = useState("");
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+        dispatch(updateName(e.target.value));
+    };
+
     return (
         <>
-            <p>GrandChild 1 : {name}</p>
-            <input type="text" value={value} onChange={(e) => { setValue(e.target.value); setName(e.target.value); }} />
+            <input
+                type="text"
+                value={value}
+                onChange={(e) => {
+                    handleChange(e);
+                }}
+            />
+            <input
+                type="text"
+                placeholder="Skill"
+                value={skill}
+                onChange={(e) => {
+                    setSkill(e.target.value);
+                }}
+            />
+            <button onClick={() => dispatch(addSkill(skill))}>Add</button>
+            <button onClick={() => dispatch(removeSkill(skill))}>Remove</button>
         </>
-    )
-}
+    );
+};
 
 const Child2 = () => {
+    const dispatch = useDispatch();
     return (
         <>
             <GrandChild2 />
+            <hr />
+            <button onClick={() => dispatch(increment())}>Increment</button>
+            <button onClick={() => dispatch(decrement())}>Decrement</button>
+            <button onClick={() => dispatch(reset())}>Reset</button>
         </>
-    )
-}
+    );
+};
 
-class GrandChild2 extends Component {
-    render() {
-        return (
-            <NameContext.Consumer>
-                {
-                    name => <p>GrandChild 2 : {name.name}</p>
-                }
-            </NameContext.Consumer>
-        )
-    }
-}
+const GrandChild2 = () => {
+    const name = useSelector((store) => store.user.name);
+    const skills = useSelector((store) => store.user.skills);
 
-const ExpandCollapse = ({ title, description, isActive, setActiveIndex, index }) => {
     return (
         <>
-            <p>{title}</p>
-            {
-                isActive && <p>{description}</p>
-            }
-            <button onClick={() => setActiveIndex(index)}>{isActive ? 'Hide' : 'Show'}</button>
+            <p>GrandChild 2 : {name}</p>
+            <p>
+                Skills:
+                {skills.map((item, index) => (
+                    <span style={{ margin: 10 }} key={index}>
+                        {item}
+                    </span>
+                ))}
+            </p>
         </>
-    )
-}
-
-const StateLifting = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    return (
-        Array.from({ length: 5 }, (i, index) => <ExpandCollapse key={index} index={index} isActive={index === activeIndex} setActiveIndex={(index) => setActiveIndex(index === activeIndex ? null : index)} title={`Title ${index + 1}`} description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries" />)
-    )
-}
+    );
+};
 
 const App = () => {
     return (
-        <>
+        <Provider store={store}>
             <Parent />
-            <StateLifting />
-        </>
-    )
-}
+        </Provider>
+    );
+};
 
 reactRoot.render(<App />);
