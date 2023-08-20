@@ -1,8 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./components/Header";
 
 const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
 
-const reactHeadingContainer = React.createElement("h2", {}, "Hi!");
+const App = () => {
+    return <Header />;
+};
 
-reactRoot.render(reactHeadingContainer);
+reactRoot.render(<App />);
