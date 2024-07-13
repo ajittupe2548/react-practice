@@ -1,0 +1,66 @@
+{
+    "name": "root",
+    "id": 0,
+    "folderList": [
+        {
+            "name": "folder1",
+            "id": 1,
+            "folderList": [
+                {
+                    "name": "subfolder1",
+                    "id": 2,
+                    "folderList": [],
+                    "fileList": [
+                        "Subfolder1_File1",
+                        "Subfolder1_File2"
+                    ]
+                },
+                {
+                    "name": "subfolder2",
+                    "id": 3,
+                    "folderList": [],
+                    "fileList": [
+                        "Subfolder2_File1",
+                        "Subfolder2_File2"
+                    ]
+                }
+            ],
+            "fileList": [
+                "Folder1_File1",
+                "Folder1_File2"
+            ]
+        },
+        {
+            "name": "folder2",
+            "id": 4,
+            "folderList": [
+                {
+                    "name": "subfolder3",
+                    "id": 5,
+                    "folderList": [],
+                    "fileList": [
+                        "Subfolder3_File1",
+                        "Subfolder3_File2"
+                    ]
+                },
+                {
+                    "name": "subfolder4",
+                    "id": 6,
+                    "folderList": [],
+                    "fileList": [
+                        "Subfolder4_File1",
+                        "Subfolder4_File2"
+                    ]
+                }
+            ],
+            "fileList": [
+                "Folder2_File1",
+                "Folder2_File2"
+            ]
+        }
+    ],
+    "fileList": [
+        "GlobalFile1",
+        "GlobalFile2"
+    ]
+}

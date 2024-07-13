@@ -1,12 +1,11 @@
 import './App.css';
-import CHome from './Components/CHome';
-import FHome from './Components/FHome';
+import FileExplorer from './Components/FileExplorer';
+import data from './data.json';
 
 function App() {
   return (
     <div className="App">
-      <CHome/>
-      <FHome/>
+      <FileExplorer fileExplorerData={data} />
     </div>
   );
 }
