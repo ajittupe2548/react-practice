@@ -1,12 +1,10 @@
 import './App.css';
-import CHome from './Components/CHome';
-import FHome from './Components/FHome';
+import Pagination from './Components/Pagination';
 
 function App() {
   return (
     <div className="App">
-      <CHome/>
-      <FHome/>
+      <Pagination />
     </div>
   );
 }

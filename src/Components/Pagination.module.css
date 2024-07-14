@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    border: 1px solid #000;
+    width: 360px;
+}
+
+.product {
+    padding: 8px;
+    border-bottom: 1px solid #000;
+}
+
+.btnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 8px;
+}
+
+.pageContainer {
+    overflow: hidden;
+}
+
+.pageWrapper {
+    display: flex;
+    gap: 13px;
+}
+
+.btn {
+    border: 1px solid #000;
+    border-radius: 2px;
+    padding: 4px;
+    cursor: pointer;
+    user-select: none;
+    min-width: 26px;
+    text-align: center;
+    flex-shrink: 0;
+}
