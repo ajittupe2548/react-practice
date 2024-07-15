@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    border: 1px solid #000;
+    padding: 20px;
+}
+
+.formItem {
+    margin-bottom: 20px;
+}
+
+.formLabel {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.formInput {
+    outline: none;
+    padding: 4px;
+    width: 100%;
+}
+
+.sliderInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tenureBtnWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tenureBtn {
+    min-width: 60px;
+    padding: 8px;
+    cursor: pointer;
+    border: none;
+}
