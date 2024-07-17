@@ -1,12 +1,10 @@
 import './App.css';
-import CHome from './Components/CHome';
-import FHome from './Components/FHome';
+import ProgressBar from './Components/ProgressBar'
 
 function App() {
   return (
     <div className="App">
-      <CHome/>
-      <FHome/>
+      <ProgressBar value={40} />
     </div>
   );
 }
