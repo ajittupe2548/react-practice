@@ -33,10 +33,12 @@ const Panel = ({ title, children }) => {
   console.log(`*****Output is :  => Panel => Panel:`);
   const theme = useContext(ThemeContext);
   return (
-    <section>
-      <h1>{title} - {theme}</h1>
-      {children}
-    </section>
+    <ThemeContext.Provider value="Nested Theme">
+      <section>
+        <h1>{title} - {theme}</h1>
+        {children}
+      </section>
+    </ThemeContext.Provider>
   )
 }
 
