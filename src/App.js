@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import './App.css';
 
 function App() {
@@ -7,14 +14,14 @@ function App() {
   const intervalId = useRef(null);
 
   useEffect(() => {
-    console.log(`*****Output is :  => useEffect => useEffect-1`)
+    console.log(`*****Output is :  => useEffect => useEffect-1`);
     intervalId.current = setInterval(() => {
-      setCount(prev => prev + 1);
+      setCount((prev) => prev + 1);
     }, 1000);
 
     return () => {
       clearInterval(intervalId.current);
-    }
+    };
   }, []);
 
   const fetchData = async () => {
@@ -34,48 +41,66 @@ function App() {
   const memoizeSomeObject = useMemo(() => ({ key: 'value' }), []);
 
   useEffect(() => {
-    console.log(`*****Output is :  => useEffect => useEffect-2`)
+    console.log(`*****Output is :  => useEffect => useEffect-2`);
     fetchData();
-  // }, [fetchData, someObject]);  /* This can cause the effect to re-run more often than necessary, especially if fetchData and someObject are re-created on every render. */
-  }, [memoizedFetchData, memoizeSomeObject]);  /* To fix re-rendering issue, we need to wrap function in useCallback and object in useMemo, this ensures that object and function is not created on new render. */
+    // }, [fetchData, someObject]);  /* This can cause the effect to re-run more often than necessary, especially if fetchData and someObject are re-created on every render. */
+  }, [
+    memoizedFetchData,
+    memoizeSomeObject,
+  ]); /* To fix re-rendering issue, we need to wrap function in useCallback and object in useMemo, this ensures that object and function is not created on new render. */
 
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const tooltipRef = useRef(null);
   const targetRef = useRef(null);
 
   // useEffect(() => { /* This might cause a flicker because the browser might paint the screen first and then run the effect to position the tooltip */
-  useLayoutEffect (() => {  /* Runs synchronously after all DOM mutations but before the browser has a chance to paint. */
+  useLayoutEffect(() => {
+    /* Runs synchronously after all DOM mutations but before the browser has a chance to paint. */
     const target = targetRef.current;
     const tooltip = tooltipRef.current;
     if (target && tooltip) {
       const targetRect = target.getBoundingClientRect();
       setPosition({
         top: targetRect.bottom,
-        left: targetRect.left
+        left: targetRect.left,
       });
     }
   }, []);
 
   const [showAlert, setShowAlert] = useState(false);
+  const [bgColor, setBgColor] = useState('#fff');
 
   useEffect(() => {
     if (showAlert) {
       // alert('Button was clicked!');  /* This might block the paint because the alert function is called synchronously within the effect. */
-      setTimeout(() => {  /* This ensures the browser paints the updated screen before showing the alert. */
+      setTimeout(() => {
+        /* This ensures the browser paints the updated screen before showing the alert. */
         alert('Button was clicked!');
       }, 0);
     }
   }, [showAlert]);
 
   const handleClick = () => {
-    setShowAlert(true);
+    setBgColor(
+      `rgb(${Math.random() * 256},${Math.random() * 256},${Math.random() * 256
+      })`
+    );
+    setShowAlert(!showAlert);
   };
 
   return (
-    <div className="App">
+    <div className='App' style={{ backgroundColor: bgColor, height: '50vh' }}>
       <div>Rendered {count} times.</div>
       <button ref={targetRef}>Hover over me</button>
-      <div ref={tooltipRef} style={{ position: 'absolute', top: position.top, left: position.left, background: 'lightgrey' }}>
+      <div
+        ref={tooltipRef}
+        style={{
+          position: 'absolute',
+          top: position.top,
+          left: position.left,
+          background: 'lightgrey',
+        }}
+      >
         Tooltip
       </div>
       <button onClick={handleClick}>Click me</button>
