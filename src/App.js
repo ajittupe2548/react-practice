@@ -1,6 +1,4 @@
 import './App.css';
-import CHome from './Components/CHome';
-import FHome from './Components/FHome';
 
 // Reconciliation - React provides a declarative API so that you don’t have to worry about exactly what changes on every update. This makes writing applications a lot easier, but it might not be obvious how this is implemented within React. This article explains the choices we made in React’s “diffing” algorithm so that component updates are predictable while being fast enough for high-performance apps.
 
@@ -82,8 +80,6 @@ import FHome from './Components/FHome';
 function App() {
   return (
     <div className="App">
-      <CHome/>
-      <FHome/>
     </div>
   );
 }
