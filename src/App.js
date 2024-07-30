@@ -1,5 +1,5 @@
 import "./App.css";
-import useFetch from "./useFetchData";
+import useFetch from "./useFetch";
 
 function App() {
     const { data, loading, error } = useFetch(
