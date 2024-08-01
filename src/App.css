@@ -1,0 +1,40 @@
+:root {
+    --background: #fff;
+    --border: #aaa;
+    --forground: #000;
+}
+
+.dark {
+    --background: #000;
+    --border: #aaa;
+    --forground: #fff;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--forground);
+}
+
+.header {
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navList {
+    display: flex;
+}
+
+.navItem {
+    padding: 8px;
+    text-decoration: none;
+    color: var(--forground);
+}
+
+.iconWrapper {
+    padding: 8px;
+    cursor: pointer;
+    user-select: none;
+}

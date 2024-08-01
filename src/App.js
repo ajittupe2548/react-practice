@@ -1,18 +1,40 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    document.documentElement.classList = theme;
+  }, []);
+
+  const handleThemeClick = () => {
+    setTheme(prev => {
+      const newTheme = prev === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      document.documentElement.classList = '';
+      document.documentElement.classList.add(newTheme);
+      return newTheme;
+    });
+  }
+
   return (
     <BrowserRouter>
-      <Link to='/'>Home</Link>
-      <Link to='/blogs'>Blogs</Link>
-      <Link to='/contact'>Contact</Link>
+      <div className='header'>
+        <div className='navList'>
+          <Link to='/' className='navItem'>Home</Link>
+          <Link to='/blogs' className='navItem'>Blogs</Link>
+          <Link to='/contact' className='navItem'>Contact</Link>
+        </div>
+        <div className='iconWrapper' onClick={handleThemeClick}>{theme}</div>
+      </div>
       <Routes>
-        <Route path='' element='home' />
+        <Route path='' element='Home' />
         <Route path='/blogs' element='Blogs' />
         <Route path='/contact' element='Contact' />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
