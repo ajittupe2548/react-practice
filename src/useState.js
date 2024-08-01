@@ -9,8 +9,8 @@ function createSetter(cursor) {
     };
 }
 
-// This is the pseudocode for the useState helper
-export function useState(initVal) {
+// This is the pseudocode for the useStateCustom helper
+export function useStateCustom(initVal) {
     if (renderCount===0) {
         state.push(initVal);
         setters.push(createSetter(cursor));
@@ -24,15 +24,16 @@ export function useState(initVal) {
 }
 
 // Our component code that uses hooks
-export function RenderFunctionComponentV2() {
-    const [firstName, setFirstName] = useState("Rudi"); // cursor: 0
-    const [lastName, setLastName] = useState("Yardley"); // cursor: 1
-    renderCount++;
+export function RenderFunctionComponent() {
+    const [firstName, setFirstName] = useStateCustom("Rudi"); // cursor: 0
+    const [lastName, setLastName] = useStateCustom("Yardley"); // cursor: 1
 
     /* Manually triggering click for 3rd render */
-    if(renderCount === 3) {
+    if(renderCount === 2) {
         setFirstName("Richard")
     }
+
+    renderCount++;
 
     return (
         <div>
@@ -45,7 +46,7 @@ export function RenderFunctionComponentV2() {
 // This is sort of simulating Reacts rendering cycle
 function MyComponent() {
     cursor = 0; // resetting the cursor
-    return RenderFunctionComponentV2(); // render
+    return RenderFunctionComponent(); // render
 }
 
 console.log(state); // Pre-render: []
