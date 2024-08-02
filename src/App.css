@@ -1,0 +1,9 @@
+.navBar {
+    display: flex;
+}
+
+.navItem {
+    padding: 8px;
+    color: #000;
+    text-decoration: none;
+}
