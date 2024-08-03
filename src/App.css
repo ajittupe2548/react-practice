@@ -1,9 +1,31 @@
 .navBar {
     display: flex;
+    border: 1px solid #000;
 }
 
 .navItem {
     padding: 8px;
     color: #000;
     text-decoration: none;
+}
+
+.link {
+    color: #000;
+    text-decoration: none;
+}
+
+.breadcrumbContainer {
+    display: flex;
+    list-style: none;
+    font-size: 14px;
+}
+
+.breadcrumbItem {
+    display: flex;
+    align-items: baseline;
+}
+
+.icon {
+    height: 10px;
+    width: 10px;
 }
