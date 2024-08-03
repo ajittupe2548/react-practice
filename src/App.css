@@ -9,6 +9,8 @@
     border-radius: 5px;
     cursor: pointer;
     width: 250px;
+    display: flex;
+    justify-content: center;
 }
 
 .thumbnail {

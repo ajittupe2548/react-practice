@@ -8,7 +8,7 @@ import BreadCrumb from './Components/BreadCrumb';
 function App() {
   return (
     <BrowserRouter>
-      <h1>Beauty Products</h1>
+      <h1>Products</h1>
       <BreadCrumb />
       <Routes>
         <Route path='/' element={<Home />} />
