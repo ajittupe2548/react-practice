@@ -30,7 +30,7 @@ const ProductList = ({ productCount }) => {
                                     className='link'
                                 >
                                     <p className='title'>{item.title}</p>
-                                    <img src={item.thumbnail} className='thumbnail' />
+                                    <img src={item.thumbnail} className='thumbnail' alt={item.title} />
                                 </Link>
                             </div>
                         );

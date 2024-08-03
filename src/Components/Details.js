@@ -23,7 +23,7 @@ const Details = () => {
             {details ? (
                 <div className='detailWrapper'>
                     <h2>{details.title}</h2>
-                    <img src={details.thumbnail} />
+                    <img src={details.thumbnail} alt={details.title} />
                     <p>$ {details.price}</p>
                     <p>{details.description}</p>
                 </div>
