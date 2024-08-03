@@ -11,7 +11,6 @@ const Details = () => {
             try {
                 const res = await fetch(`https://dummyjson.com/product/${id}`);
                 const data = await res.json();
-                console.log(`*****Output is :  => data:`, data);
                 setDetails(data);
             }
             catch (err) {

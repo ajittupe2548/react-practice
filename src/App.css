@@ -23,11 +23,17 @@
 .breadcrumbItem {
     display: flex;
     align-items: baseline;
+    user-select: none;
+}
+
+.breadcrumbItem a {
+    color: rgb(5, 90, 135);
 }
 
 .icon {
     height: 10px;
     width: 10px;
+    margin: 0 2px;
 }
 
 /* V2 */

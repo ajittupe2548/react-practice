@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ChevronRightIcon = ({ className }) => {
     return (
@@ -36,10 +36,35 @@ const BreadCrumb = ({ pages }) => {
 };
 
 const BreadCrumbV2 = ({ pages }) => {
+    const { pathname } = useLocation();
+    const formattedPath = pathname.split('/').filter(item => item);
     return (
-        <>
-            BreadCrumb
-        </>
+        <ul className='breadcrumbContainer'>
+            {
+                formattedPath.length > 0 && (
+                    <li className="breadcrumbItem">
+                        <Link to='/' className="link">Home</Link>
+                    </li>
+                )
+            }
+            {
+                formattedPath.map((item, index) => {
+                    return (
+                        <li key={index} className="breadcrumbItem">
+                            <ChevronRightIcon className='icon' />
+                            {index !== formattedPath.length - 1 ? (
+                                <>
+                                    <Link to={item} className='link'>
+                                        {item}
+                                    </Link>
+                                </>
+                            ) : <p className="lastBreadcrumbItem">{item}</p>}
+                        </li>
+
+                    )
+                })
+            }
+        </ul>
     );
 };
 
