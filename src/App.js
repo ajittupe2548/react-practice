@@ -1,9 +1,9 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Home from './Home';
-import Listing from './Listing';
-import Details from './Details';
-import BreadCrumb from './BreadCrumb';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Components/Home';
+import Listing from './Components/Listing';
+import Details from './Components/Details';
+import BreadCrumb from './Components/BreadCrumb';
 
 const Layout = ({ children }) => {
   return <div className='content'>{children}</div>;
