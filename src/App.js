@@ -3,22 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Listing from './Listing';
 import Details from './Details';
-
-const Header = () => {
-  return (
-    <div className='navBar'>
-      <Link to='/' className='navItem'>
-        Home
-      </Link>
-      <Link to='/listing' className='navItem'>
-        Listing
-      </Link>
-      <Link to='/listing/details' className='navItem'>
-        Details
-      </Link>
-    </div>
-  );
-};
+import BreadCrumb from './BreadCrumb';
 
 const Layout = ({ children }) => {
   return <div className='content'>{children}</div>;
@@ -27,7 +12,8 @@ const Layout = ({ children }) => {
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <h1>Beauty Products</h1>
+      <BreadCrumb />
       <Routes>
         <Route
           path='/'
@@ -38,7 +24,7 @@ function App() {
           }
         />
         <Route
-          path='/listing'
+          path='/products'
           element={
             <Layout>
               <Listing />
@@ -46,7 +32,7 @@ function App() {
           }
         />
         <Route
-          path='/listing/details'
+          path='/products/:productName'
           element={
             <Layout>
               <Details />

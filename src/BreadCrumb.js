@@ -35,4 +35,12 @@ const BreadCrumb = ({ pages }) => {
     );
 };
 
-export default BreadCrumb;
+const BreadCrumbV2 = ({ pages }) => {
+    return (
+        <>
+            BreadCrumb
+        </>
+    );
+};
+
+export default BreadCrumbV2;
