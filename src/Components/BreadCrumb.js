@@ -1,5 +1,6 @@
 /* 1h 20m */
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
+import styles from './BreadCrumb.module.css';
 
 const ChevronRightIcon = ({ className }) => {
     return (
@@ -15,31 +16,30 @@ const ChevronRightIcon = ({ className }) => {
 
 const BreadCrumb = () => {
     const { pathname } = useLocation();
-    const formattedPath = pathname.split('/').filter(item => item);
+    const formattedPath = pathname.split('/').filter((item) => item);
     return (
-        <ul className='container'>
-            {
-                formattedPath.length > 0 && (
-                    <li className="item">
-                        <Link to='/' className="link">Home</Link>
+        <ul className={styles.container}>
+            {formattedPath.length > 0 && (
+                <li className={styles.item}>
+                    <Link to='/' className={styles.link}>
+                        Home
+                    </Link>
+                </li>
+            )}
+            {formattedPath.map((item, index) => {
+                return (
+                    <li key={index} className={styles.item}>
+                        <ChevronRightIcon className={styles.icon} />
+                        {index !== formattedPath.length - 1 ? (
+                            <Link to={item} className={styles.link}>
+                                {item}
+                            </Link>
+                        ) : (
+                            <p>{item}</p>
+                        )}
                     </li>
-                )
-            }
-            {
-                formattedPath.map((item, index) => {
-                    return (
-                        <li key={index} className="item">
-                            <ChevronRightIcon className='icon' />
-                            {index !== formattedPath.length - 1 ? (
-                                <Link to={item} className='link'>
-                                    {item}
-                                </Link>
-                            ) : <p>{item}</p>}
-                        </li>
-
-                    )
-                })
-            }
+                );
+            })}
         </ul>
     );
 };

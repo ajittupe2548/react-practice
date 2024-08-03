@@ -1,12 +1,5 @@
-import ProductList from "./ProductList";
+import ProductList from './ProductList';
 
-const Home = () => {
-    return (
-        <>
-            <ProductList productCount={6} />
-        </>
-
-    )
-}
+const Home = () => <ProductList productCount={6} />;
 
 export default Home;
