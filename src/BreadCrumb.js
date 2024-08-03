@@ -1,3 +1,4 @@
+/* 1h 20m */
 import { Link, useLocation } from "react-router-dom";
 
 const ChevronRightIcon = ({ className }) => {
@@ -12,37 +13,14 @@ const ChevronRightIcon = ({ className }) => {
     );
 };
 
-const BreadCrumb = ({ pages }) => {
-    return (
-        <ul className='breadcrumbContainer'>
-            {pages.map((item, index) => {
-                return (
-                    <li
-                        key={index}
-                        style={{ marginLeft: index !== 0 ? 4 : 0 }}
-                        className='breadcrumbItem'
-                    >
-                        <Link to={item.url} className='link'>
-                            {item.name}
-                        </Link>
-                        {index !== pages.length - 1 && (
-                            <ChevronRightIcon className='icon' />
-                        )}
-                    </li>
-                );
-            })}
-        </ul>
-    );
-};
-
-const BreadCrumbV2 = ({ pages }) => {
+const BreadCrumb = () => {
     const { pathname } = useLocation();
     const formattedPath = pathname.split('/').filter(item => item);
     return (
-        <ul className='breadcrumbContainer'>
+        <ul className='container'>
             {
                 formattedPath.length > 0 && (
-                    <li className="breadcrumbItem">
+                    <li className="item">
                         <Link to='/' className="link">Home</Link>
                     </li>
                 )
@@ -50,15 +28,13 @@ const BreadCrumbV2 = ({ pages }) => {
             {
                 formattedPath.map((item, index) => {
                     return (
-                        <li key={index} className="breadcrumbItem">
+                        <li key={index} className="item">
                             <ChevronRightIcon className='icon' />
                             {index !== formattedPath.length - 1 ? (
-                                <>
-                                    <Link to={item} className='link'>
-                                        {item}
-                                    </Link>
-                                </>
-                            ) : <p className="lastBreadcrumbItem">{item}</p>}
+                                <Link to={item} className='link'>
+                                    {item}
+                                </Link>
+                            ) : <p>{item}</p>}
                         </li>
 
                     )
@@ -68,4 +44,4 @@ const BreadCrumbV2 = ({ pages }) => {
     );
 };
 
-export default BreadCrumbV2;
+export default BreadCrumb;
