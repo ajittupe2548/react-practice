@@ -3,9 +3,8 @@ import useName from './useName';
 
 /*
 Flaw #2: Name Clashes
+One common suggestion is to let useState() accept a key argument (e.g. a string) that uniquely identifies a particular state variable within a component. With this proposal, any time you add a new state variable inside a custom Hook, you risk breaking any components that use it (directly or transitively) because they might already use the same name for their own state variables.
 
-- One common suggestion is to let useState() accept a key argument (e.g. a string) that uniquely identifies a particular state variable within a component.
-- With this proposal, any time you add a new state variable inside a custom Hook, you risk breaking any components that use it (directly or transitively) because they might already use the same name for their own state variables.
 - The actual Hooks proposal solves this by relying on the call order: even if two Hooks use a name state variable, they would be isolated from each other. Every useState() call gets its own “memory cell”.
 
 */
