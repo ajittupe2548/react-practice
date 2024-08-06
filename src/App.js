@@ -3,6 +3,7 @@ import "./App.css";
 import React from "react";
 import Flaw1 from "./components/Flaw1";
 import Flaw2 from "./components/Flaw2";
+import Flaw3 from "./components/Flaw3";
 
 /* https://overreacted.io/why-do-hooks-rely-on-call-order/ */
 
@@ -14,7 +15,8 @@ function App() {
     return (
         <div className="App">
             {/* <Flaw1 /> */}
-            <Flaw2 />
+            {/* <Flaw2 /> */}
+            <Flaw3 />
         </div>
     );
 }
