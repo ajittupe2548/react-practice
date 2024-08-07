@@ -97,3 +97,36 @@ function App() {
 }
 
 export default App;
+
+/*
+state = [0, 100]
+setSate = [setAjit, setAjit2]
+
+
+prevUseEffectData = [0]
+newUseEffectData = [1]
+*/
+
+/*
+sum(1)(2)(3)()
+
+timer
+
+has all unique count
+
+{
+a: 1,
+b: 2,
+c: 3,
+}
+
+object.key vs for in
+
+let const var
+
+hoisting
+
+currying
+
+closure
+*/
