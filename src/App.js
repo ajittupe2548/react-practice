@@ -48,6 +48,16 @@ function Counter2() {
     return <h1>{count}</h1>;
 }
 
+/*
+By contrast, setInterval does not describe a process in time — once you set the interval, you can’t change anything about it except clearing it.
+
+That’s the mismatch between the React model and the setInterval API.
+
+- The useEffect() Hook “forgets” the previous render too. It cleans up the last effect and sets up the next effect. The next effect closes over fresh props and state. This is why our first attempt worked for simple cases.
+
+- But setInterval() does not “forget”. It will forever reference the old props and state until you replace it — which you can’t do without resetting the time.
+*/
+
 function useInterval(callback, delay) {
     const savedCallback = useRef();
 
@@ -141,36 +151,3 @@ function App() {
 }
 
 export default App;
-
-/*
-state = [0, 100]
-setSate = [setAjit, setAjit2]
-
-
-prevUseEffectData = [0]
-newUseEffectData = [1]
-*/
-
-/*
-sum(1)(2)(3)()
-
-timer
-
-has all unique count
-
-{
-a: 1,
-b: 2,
-c: 3,
-}
-
-object.key vs for in
-
-let const var
-
-hoisting
-
-currying
-
-closure
-*/
