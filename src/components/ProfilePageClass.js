@@ -19,6 +19,9 @@ class ProfilePage extends React.Component {
     };
 
     render() {
+        /*
+        We could then add as many helper functions inside as we want, and they would all use the captured props and state. Closures to the rescue. This is handled by default in functional components.
+        */
         return <button onClick={this.handleClick}>Follow</button>;
     }
 }
