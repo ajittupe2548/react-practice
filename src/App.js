@@ -1,5 +1,6 @@
 import './App.css';
 import DataFlow from './components/DataFlow';
+import Render from './components/Render';
 
 /*
 Writing Resilient Components: https://overreacted.io/writing-resilient-components/
@@ -8,7 +9,8 @@ Writing Resilient Components: https://overreacted.io/writing-resilient-component
 function App() {
   return (
     <div className="App">
-      <DataFlow />
+      {/* <DataFlow /> */}
+      <Render />
     </div>
   );
 }
