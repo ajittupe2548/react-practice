@@ -127,7 +127,6 @@ class DataFlow3 extends Component {
     render() {
         return (
             <>
-                <h1>Hello!</h1>
                 <ButtonDataFlow3 color='green' onClick={
                     // 🔴 Button ignores updates to the onClick prop
                     this.state.isEnabled ? this.handleClick : null
