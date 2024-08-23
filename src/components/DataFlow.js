@@ -6,19 +6,21 @@ import React, { Component, useEffect, useState } from 'react'
         - components should directly use props passed to them and avoid copying props into state to ensure the component reflects updates accurately.
         - Copying props into state can cause the component to ignore updates, leading to stale values and incorrect rendering behavior. We can name such props as initiaColor or defaultColor to clarify that changes to it are ignored.
         - For expensive computations based on props, memoization should be used (e.g., using useMemo in function components) to optimize performance without losing reactivity to prop changes.
+
+2. Don’t Stop the Data Flow in Side Effects
 */
 
 function ButtonFunctional({ color }) {
     const [colorState, setColorState] = useState(color);
 
-    console.log(`*****Output is :  => ButtonFunctional => ButtonFunctional:`);
+    // console.log(`*****Output is :  => ButtonFunctional => ButtonFunctional:`, color);
 
     useEffect(() => {
         setColorState(color);
     }, [color]);
 
     return (
-        <div>{colorState}</div>
+        <div>Function: {colorState}</div>
     )
 }
 
@@ -50,12 +52,12 @@ class Button extends Component {
     render() {
         // console.log(`*****Output is :  => Button => render => this.state.color:`, this.state.color)
         return (
-            <div>{this.state.color}</div>
+            <div>Class: {this.state.color}</div>
         )
     }
 }
 
-export default class DataFlow extends Component {
+class DataFlow1 extends Component {
     state = {
         isOk: true,
     }
@@ -69,9 +71,22 @@ export default class DataFlow extends Component {
     render() {
         return (
             <>
+                <p>Data flow rendering start</p>
                 <button onClick={this.handleToggleClick}>Toggle</button>
                 <Button color={this.state.isOk ? 'blue' : 'red'} />
                 <ButtonFunctional color={this.state.isOk ? 'blue' : 'red'} />
+                <p>Data flow rendering end</p>
+            </>
+        )
+    }
+}
+
+export default class DataFlow extends Component {
+
+    render() {
+        return (
+            <>
+                <DataFlow1 />
             </>
         )
     }
