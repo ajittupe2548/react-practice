@@ -10,6 +10,8 @@ import React, { Component } from 'react'
     - Use fully controlled components to manage state through props.
 Use uncontrolled components with a key to manage local state and reset when needed.
     - Don’t Sync Props and State: Treat "receiving props" as just another render. Manage state either fully through props or locally.
+
+- The key prop in React is a special prop that has a unique meaning for React’s reconciliation algorithm. It's used to determine if a component should be re-rendered or remounted. If you rename key to anything else, React will no longer recognize it as a special identifier, and it won’t trigger the reset behavior.
 */
 
 class TextInput extends React.Component {
