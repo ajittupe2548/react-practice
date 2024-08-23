@@ -15,6 +15,13 @@ import React, { Component, useEffect, useState } from 'react'
         - The useEffect Hook in function components simplifies managing side effects by making dependencies explicit, allowing for easier consistency checks and reducing the likelihood of bugs.
 
         - The useEffect API, combined with linter rules, encourages consistency and makes React components more resilient to changes, compared to managing updates in class components.
+
+    3. Don’t Stop the Data Flow in Optimizations
+        - Custom optimizations in React, like manual shouldComponentUpdate or custom React.memo() comparisons, can miss updates, especially with function props like onClick.
+
+        - In class components, stable method identities can mask these issues, leading to bugs when functions change but the component uses outdated references.
+
+        - Use React's default shallow comparison in PureComponent or React.memo() to handle function prop changes automatically. If customizing, include function props in comparisons.
 */
 
 function ButtonFunctional({ color }) {
@@ -88,12 +95,57 @@ class DataFlow1 extends Component {
     }
 }
 
+class ButtonDataFlow3 extends React.Component {
+    shouldComponentUpdate(prevProps) {
+        // 🔴 Doesn't compare this.props.onClick
+        return this.props.color !== prevProps.color;
+    }
+
+    render() {
+        const onClick = this.props.onClick; // 🔴 Doesn't reflect updates
+        const textColor = this.props.color;
+        console.log(`*****Output is :  => ButtonDataFlow2 => render => textColor:`, textColor)
+        return (
+            <button
+                onClick={onClick}
+                className={'Button-' + this.props.color + ' Button-text-' + textColor}>
+                {this.props.children}
+            </button>
+        );
+    }
+}
+
+class DataFlow3 extends Component {
+    state = {
+        isEnabled: true
+    };
+
+    handleClick = () => {
+        this.setState({ isEnabled: false });
+    }
+
+    render() {
+        return (
+            <>
+                <h1>Hello!</h1>
+                <ButtonDataFlow3 color='green' onClick={
+                    // 🔴 Button ignores updates to the onClick prop
+                    this.state.isEnabled ? this.handleClick : null
+                }>
+                    Press me
+                </ButtonDataFlow3>
+            </>
+        )
+    }
+}
+
 export default class DataFlow extends Component {
 
     render() {
         return (
             <>
                 {/* <DataFlow1 /> */}
+                <DataFlow3 />
             </>
         )
     }
