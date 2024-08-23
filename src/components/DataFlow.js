@@ -7,7 +7,14 @@ import React, { Component, useEffect, useState } from 'react'
         - Copying props into state can cause the component to ignore updates, leading to stale values and incorrect rendering behavior. We can name such props as initiaColor or defaultColor to clarify that changes to it are ignored.
         - For expensive computations based on props, memoization should be used (e.g., using useMemo in function components) to optimize performance without losing reactivity to prop changes.
 
-2. Don’t Stop the Data Flow in Side Effects
+    2. Don’t Stop the Data Flow in Side Effects
+        -To ensure that side effects (like data fetching) respect changes to props, avoid relying solely on componentDidMount. Instead, use componentDidUpdate to re-run side effects whenever relevant props or state change.
+
+        - Both props and state should be considered part of the React data flow, meaning side effects must be responsive to changes in either to prevent bugs.
+
+        - The useEffect Hook in function components simplifies managing side effects by making dependencies explicit, allowing for easier consistency checks and reducing the likelihood of bugs.
+
+        - The useEffect API, combined with linter rules, encourages consistency and makes React components more resilient to changes, compared to managing updates in class components.
 */
 
 function ButtonFunctional({ color }) {
@@ -86,7 +93,7 @@ export default class DataFlow extends Component {
     render() {
         return (
             <>
-                <DataFlow1 />
+                {/* <DataFlow1 /> */}
             </>
         )
     }
