@@ -32,7 +32,7 @@
     color: #2563eb; /* Assuming blue[600] = #2563eb */
 }
 
-.tab.disabled {
+.tab.base--disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }

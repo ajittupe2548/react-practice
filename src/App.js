@@ -8,10 +8,10 @@ import { Tab } from '@mui/base/Tab';
 function App() {
   return (
     <div className="App">
-      <Button className='ajit'>Click Me</Button>
+      <Button className='ajit' rootElementName='a' disabled>Click Me</Button>
       <Tabs defaultValue={0}>
         <TabsList className='tabs-list'>
-          <Tab value={0} className='tab'>My account</Tab>
+          <Tab value={0} className='tab' disabled>My account</Tab>
           <Tab value={1} className='tab'>Profile</Tab>
           <Tab value={2} className='tab'>Language</Tab>
         </TabsList>
