@@ -1,0 +1,70 @@
+.ajit {
+    color: red;
+}
+
+.tab {
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: transparent;
+    width: 100%;
+    padding: 10px 12px;
+    margin: 6px;
+    border: none;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+}
+
+.tab:hover {
+    background-color: #bfdbfe; /* Assuming blue[400] = #3b82f6 */
+}
+
+.tab:focus {
+    color: #fff;
+    outline: 3px solid #bfdbfe; /* Assuming blue[200] = #bfdbfe */
+}
+
+.tab.base--selected {
+    background-color: #fff;
+    color: #2563eb; /* Assuming blue[600] = #2563eb */
+}
+
+.tab.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tab-panel {
+    width: 100%;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.875rem;
+    padding: 20px 12px;
+    background: #fff; /* Assuming light mode by default */
+    border: 1px solid #e5e7eb; /* Assuming grey[200] = #e5e7eb */
+    border-radius: 12px;
+    opacity: 0.6;
+}
+
+.tab-panel.dark {
+    background: #111827; /* Assuming grey[900] = #111827 */
+    border: 1px solid #374151; /* Assuming grey[700] = #374151 */
+}
+
+.tabs-list {
+    min-width: 400px;
+    background-color: #3b82f6; /* Assuming blue[500] = #3b82f6 */
+    border-radius: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: space-between;
+    box-shadow: 0px 4px 30px #e5e7eb; /* Assuming light mode with grey[200] */
+}
+
+.tabs-list.dark {
+    box-shadow: 0px 4px 30px #111827; /* Assuming grey[900] = #111827 */
+}
