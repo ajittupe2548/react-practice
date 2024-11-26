@@ -29,6 +29,7 @@ function BatchUpdate() {
   return <button onClick={handleClick}>{text}- {count}</button>;
 }
 
+/* useId */
 function UseIdExample() {
   const [count, setCount] = useState(0);
   const id = useId();
@@ -41,7 +42,7 @@ function UseIdExample() {
 
   return (
     <>
-    {count}
+      {count}
       <label htmlFor={id}>Name</label>
       <input id={id} type="text" />
     </>
