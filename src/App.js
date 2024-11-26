@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState, useId } from 'react';
+import React, { useEffect, useState, useId, Suspense, useTransition } from 'react';
 import { flushSync } from "react-dom";
 
 /* Batch update */
@@ -49,34 +49,71 @@ function UseIdExample() {
   );
 }
 
-const FlushSyncExample = () => {
-  const [count, setCount] = useState(0);
+/* Suspense */
+const fetchData = () =>
+  new Promise((resolve) =>
+    setTimeout(() => resolve('Fetched Data'), 2000)
+  );
 
-  const handleClick = () => {
-    console.log("Before update:", count);
+const DataComponent = React.lazy(() => fetchData().then(() => ({ default: () => <div>Fetched Data</div> })));
 
-    flushSync(() => {
-      setCount((prev) => prev + 1);
+function SuspenseExample() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <DataComponent />
+    </Suspense>
+  );
+}
+
+/* startTransition */
+function TransitionExample() {
+  const [items, setItems] = useState([
+    'Apple', 'Banana', 'Orange', 'Grape', 'Pineapple', 'Strawberry', 'Blueberry', 'Mango'
+  ]);
+
+  const [filter, setFilter] = useState('');
+  const [isPending, startTransition] = useTransition();
+
+  const filteredItems = items.filter(item => item.toLowerCase().includes(filter.toLowerCase()));
+
+  const handleFilterChange = (e) => {
+    const newFilter = e.target.value;
+
+    startTransition(() => {
+      setFilter(newFilter);
     });
-
-    console.log("After update:", count);
   };
 
   return (
     <div>
-      <p>Count: {count}</p>
-      <button onClick={handleClick}>Increment</button>
+      <h1>Fruits List</h1>
+
+      <input
+        type="text"
+        value={filter}
+        onChange={handleFilterChange}
+        placeholder="Filter fruits"
+      />
+
+      {isPending ? <div>Loading...</div> : null}
+
+      <ul>
+        {filteredItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
 
 function App() {
   return (
     <div className="App">
-      <BatchUpdate />
-      <UseIdExample />
-      <UseIdExample />
-      <FlushSyncExample />
+      {/* <BatchUpdate /> */}
+      {/* <UseIdExample />
+      <UseIdExample /> */}
+      {/* <SuspenseExample /> */}
+      <TransitionExample />
     </div>
   );
 }
