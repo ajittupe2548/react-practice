@@ -1,26 +1,30 @@
-import { createContext, memo, useContext, useEffect, useState } from 'react';
+import { createContext, memo, useContext, useState } from 'react';
 
-const ThemeContext = createContext(null);
+const ThemeContext = createContext();
 
-export default function MyApp() {
-  const [value, setValue] = useState("Dark");
-  const [value2, setValue2] = useState("Dark");
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('dark');
 
-  useEffect(() => {
-    setTimeout(() => {
-      setValue2("Light")
-    }, 2000);
-  }, []);
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
+  }
 
   return (
-    <ThemeContext.Provider value={value}>
-      <Form />
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
     </ThemeContext.Provider>
   )
 }
 
+export default function MyApp() {
+  return (
+    <ThemeProvider>
+      <Form />
+    </ThemeProvider>
+  )
+}
+
 const Form = () => {
-  console.log(`*****Output is :  => Form => Form:`);
   return (
     <Panel title="Welcome">
       <Button>Sign up</Button>
@@ -30,23 +34,21 @@ const Form = () => {
 }
 
 const Panel = ({ title, children }) => {
-  console.log(`*****Output is :  => Panel => Panel:`);
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+  console.log(`*****Output is :  => Panel => theme:`, theme);
   return (
-    <ThemeContext.Provider value="Nested Theme">
-      <section>
-        <h1>{title} - {theme}</h1>
-        {children}
-      </section>
-    </ThemeContext.Provider>
+    <section>
+      <h1>{title} - {theme}</h1>
+      {children}
+    </section>
   )
 }
 
 const Button = memo(({ children }) => {
-  console.log(`*****Output is :  => Button => Button:`);
-  const theme = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  console.log(`*****Output is :  => Button => theme:`, theme);
   return (
-    <button>
+    <button onClick={toggleTheme}>
       {children} - {theme}
     </button>
   );
