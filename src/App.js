@@ -42,7 +42,7 @@ function App() {
 
   useEffect(() => {
     console.log(`*****Output is :  => useEffect => useEffect-2`);
-    fetchData();
+    memoizedFetchData();
     // }, [fetchData, someObject]);  /* This can cause the effect to re-run more often than necessary, especially if fetchData and someObject are re-created on every render. */
   }, [
     memoizedFetchData,
@@ -56,6 +56,12 @@ function App() {
   // useEffect(() => { /* This might cause a flicker because the browser might paint the screen first and then run the effect to position the tooltip */
   useLayoutEffect(() => {
     /* Runs synchronously after all DOM mutations but before the browser has a chance to paint. */
+
+    /* This will block paint with useLayoutEffect */
+    // let cur = Date.now();
+    // while (Date.now() - cur < 3000) { }
+    console.log(`*****Output is :  => useEffect => useEffect-3`);
+
     const target = targetRef.current;
     const tooltip = tooltipRef.current;
     if (target && tooltip) {
@@ -71,6 +77,7 @@ function App() {
   const [bgColor, setBgColor] = useState('#fff');
 
   useEffect(() => {
+    console.log(`*****Output is :  => useEffect => useEffect-4`);
     if (showAlert) {
       // alert('Button was clicked!');  /* This might block the paint because the alert function is called synchronously within the effect. */
       setTimeout(() => {
