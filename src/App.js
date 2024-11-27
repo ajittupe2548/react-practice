@@ -1,16 +1,13 @@
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 /* https://github.com/ajittupe2548/learning-docs/blob/master/React/Hooks.md#usestate */
 
+/* This works in both react 17 and 18 */
 const BatchStateUpdate = () => {
   const [counter1, setCounter1] = useState(0);
   const [counter2, setCounter2] = useState(0);
   const [counter3, setCounter3] = useState(0);
-  const [renderCount, setRenderCount] = useState(0);
-
-  useEffect(() => {
-    setRenderCount(renderCount + 1);
-  }, [counter1, counter2, counter3]);
+  console.log(`*****Output is :  => Render =>`,);
 
   const handleClick = () => {
     setCounter1(counter1 + 1);
@@ -31,11 +28,9 @@ const BatchStateUpdate = () => {
         Counter3: {counter3}
       </div>
       <br />
-      <div>Component was rendered {renderCount} times</div>
       <button onClick={handleClick}>Click me</button>
     </div>
   );
-
 }
 
 /* In React 17, async operations were not batched by React. But in React version 18, async operations are also batched. */
@@ -43,11 +38,7 @@ const AsyncEventHandlers = () => {
   const [counter1, setCounter1] = useState(0);
   const [counter2, setCounter2] = useState(0);
   const [counter3, setCounter3] = useState(0);
-  const [renderCount, setRenderCount] = useState(0);
-
-  useEffect(() => {
-    setRenderCount(renderCount + 1);
-  }, [counter1, counter2, counter3]);
+  console.log(`*****Output is :  => Render =>`,);
 
   const handleClickAsync = async () => {
     await setCounter1(counter1 + 1);
@@ -76,7 +67,6 @@ const AsyncEventHandlers = () => {
         Counter3: {counter3}
       </div>
       <br />
-      <div>Component was rendered {renderCount} times</div>
       <button onClick={handleClickAsync}>Async handler</button>
       <button onClick={handleClickThen}>Then handler</button>
     </div>
@@ -86,7 +76,7 @@ const AsyncEventHandlers = () => {
 function App() {
   return (
     <>
-      <BatchStateUpdate />
+      {/* <BatchStateUpdate /> */}
       <AsyncEventHandlers />
     </>
   )
