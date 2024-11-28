@@ -1,4 +1,4 @@
-import { createContext, memo, useContext, useState } from 'react';
+import { createContext, memo, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext();
 
@@ -36,6 +36,11 @@ const Form = () => {
 const Panel = ({ title, children }) => {
   const { theme } = useContext(ThemeContext);
   console.log(`*****Output is :  => Panel => theme:`, theme);
+  useEffect(() => {
+    document.documentElement.style.background = theme === 'dark' ? '#000' : '#fff';
+    document.documentElement.style.color = theme === 'dark' ? '#fff' : '#000';
+  }, [theme]);
+
   return (
     <section>
       <h1>{title} - {theme}</h1>
