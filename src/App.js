@@ -33,11 +33,20 @@ const BatchStateUpdate = () => {
   );
 }
 
+const secondState = () => {
+  console.log(`*****Output is :  => secondState => secondState:`)
+  return 2;
+}
+
 /* In React 17, async operations were not batched by React. But in React version 18, async operations are also batched. */
 const AsyncEventHandlers = () => {
-  const [counter1, setCounter1] = useState(0);
-  const [counter2, setCounter2] = useState(0);
-  const [counter3, setCounter3] = useState(0);
+  const [counter1, setCounter1] = useState(() => {
+    console.log(`*****Output is :  => firstState => firstState:`);
+    return 1;
+  });
+  /* secondState function will run for each render. */
+  const [counter2, setCounter2] = useState(secondState());
+  const [counter3, setCounter3] = useState(3);
   console.log(`*****Output is :  => Render =>`,);
 
   const handleClickAsync = async () => {
