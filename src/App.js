@@ -1,25 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
-/* Although the result of these functions is only used for the initial render, these functions will run on every render. */
 const getInitialIntervalId = () => {
   console.log(
     `*****Output is :  => getInitialIntervalId => getInitialIntervalId:`
   );
-  return 0;
+  return null;
 };
 
-const getInitialCount = () => {
-  // let initialDate = new Date();
-  // while (new Date().getSeconds() - initialDate.getSeconds() < 1) {}
-  console.log(`*****Output is :  => getInitialCount => getInitialCount:`);
-  return 0;
+const getInputElemDefaultValue = () => {
+  console.log(`*****Output is :  => getInputElemDefaultValue => getInputElemDefaultValue:`);
+  return null;
 };
 
 function App() {
-  const [count, setCount] = useState(getInitialCount());
+  const [count, setCount] = useState(0);
   const intervalIdRef = useRef(null);
-  const inputElRef = useRef(null);
+  const inputElRef = useRef(getInputElemDefaultValue());
 
   if (intervalIdRef.current === null) {
     intervalIdRef.current = getInitialIntervalId();
