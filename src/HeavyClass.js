@@ -14,7 +14,7 @@ class HeavyClass extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.count !== this.state.count) {
-            const result = fibonacci(40); // Fibonacci of 40 is very expensive
+            const result = fibonacci(40);
             this.setState({ fibNumber: result });
         }
     }

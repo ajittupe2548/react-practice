@@ -25,10 +25,6 @@ const onRenderCallback = (
     id,
     phase,
     actualDuration,
-    baseDuration,
-    startTime,
-    commitTime,
-    interactions,
   });
 };
 
@@ -37,20 +33,20 @@ function App() {
     <div>
       <h1>Performance Comparison</h1>
 
-      <Profiler id='HeavyFunctional' onRender={onRenderCallback}>
-        <HeavyFunctional />
-      </Profiler>
-
-      <Profiler id='HeavyClass' onRender={onRenderCallback}>
-        <HeavyClass />
+      <Profiler id='LightClass' onRender={onRenderCallback}>
+        <LightClass />
       </Profiler>
 
       <Profiler id='LightFunctional' onRender={onRenderCallback}>
         <LightFunctional />
       </Profiler>
 
-      <Profiler id='LightClass' onRender={onRenderCallback}>
-        <LightClass />
+      <Profiler id='HeavyClass' onRender={onRenderCallback}>
+        <HeavyClass />
+      </Profiler>
+
+      <Profiler id='HeavyFunctional' onRender={onRenderCallback}>
+        <HeavyFunctional />
       </Profiler>
     </div>
   );
