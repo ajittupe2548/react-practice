@@ -4,7 +4,7 @@ import React, { Component, useState, useEffect, useRef } from "react";
 /* https://overreacted.io/a-complete-guide-to-useeffect/ */
 
 /*
-Each Render Has Its Own Props, State, evnet handlers, useEffect etc. (In short everything)
+Each Render Has Its Own Props, State, event handlers, useEffect etc. (In short everything)
 
 Whenever we update the state, React calls our component. Each render result “sees” its own counter state value which is a constant inside our function.
 */
