@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useDeferredValue, Suspense, useMemo } from "react";
+import React, { useState, useDeferredValue, useMemo } from "react";
 
 function SearchResults({ query }) {
   const deferredQuery = useDeferredValue(query);
