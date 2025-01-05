@@ -104,6 +104,25 @@ Redux is a predictable state management library for JavaScript applications. It 
 
 6. redux-devtools: Provides tools for inspecting and debugging the state of a Redux store in the browser. It allows for time-travel debugging and inspecting actions and state.
 
+## Steps to add state in redux
+
+1. Install Dependencies: `redux react-redux`
+2. Create Actions: `export const increment = () => ({type: 'INCREMENT',});`
+3. Create Reducer: `const counterReducer = (state = initialState, action) => state};`
+4. Set Up Redux Store with the help of reducer: `const store = createStore(counterReducer)`
+5. Wrap Application with the Provider: `<Provider store={store}><App /></Provider>`
+6. Create a React Component: Use the useSelector and useDispatch hooks to interact with the Redux store.
+
+## Connecting Component to Redux Store
+
+1. Using `connect` (higher order component) from `react-redux`
+   - mapStateToProps: Maps the Redux state to the component's props.
+   - mapDispatchToProps: Maps dispatch functions to the component's props.
+   - Example - `export default connect(mapStateToProps, mapDispatchToProps)(Counter);`
+2. Using `useSelector` and `useDispatch` (hooks) from `react-redux`
+   - useSelector: Extracts data from the Redux store state.
+   - useDispatch: Provides access to the dispatch function to dispatch actions.
+
 ## Namaste react
 
 ### useContext vs Redux.
