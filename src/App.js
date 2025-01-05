@@ -1,7 +1,8 @@
 import './App.css';
 import CakeContainer from './components/CakeContainer';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './redux/store';
 import HooksCakeContainer from './components/HooksCakeContainer';
 import IceCreamContainer from './components/IceCreamContainer';
 import NewCakeContainer from './components/NewCakeContainer';
@@ -11,15 +12,17 @@ import UserContainer from './components/UserContainer';
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <UserContainer />
-        <ItemContainer />
-        <ItemContainer cake />
-        <CakeContainer />
-        <HooksCakeContainer />
-        <IceCreamContainer />
-        <NewCakeContainer />
-      </div>
+      <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+        <div className="App">
+          <UserContainer />
+          <ItemContainer />
+          <ItemContainer cake />
+          <CakeContainer />
+          <HooksCakeContainer />
+          <IceCreamContainer />
+          <NewCakeContainer />
+        </div>
+      </PersistGate>
     </Provider>
   );
 }
