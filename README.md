@@ -163,12 +163,3 @@ In Redux Toolkit, a selector is a function that retrieves specific data from the
 ### Explain createSlice and the configuration it takes.
 
 In Redux Toolkit, the createSlice function simplifies the creation of Redux slices, which are self-contained state portions and reducer logic. It takes initial state, a unique name, and reducer functions as configuration. These reducers generate action creators automatically, reducing manual action type and creator coding. The resulting actions and reducer aid in managing state updates and immutability.
-
-#Pending
-redux
-react-redux
-redux-immutable
-redux-persist
-redux-logger
-redux-thunk
-redux-devtools-extension
