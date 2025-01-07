@@ -92,7 +92,7 @@ Redux is a predictable state management library for JavaScript applications. It 
 
 ## Middleware overview
 
-1. redux-thunk: Handles asynchronous actions by allowing action creators to return functions (thunks) instead of plain action objects. It provides a way to delay the dispatch of actions or dispatch actions conditionally.
+1. redux-thunk: Handles asynchronous actions by allowing action creators to return functions (thunks) instead of plain action objects. It provides a way to delay the dispatch of actions or dispatch actions conditionally. When a thunk function is dispatched, it passes through the Redux middleware pipeline, ensuring that any additional middleware (like logging or error tracking) processes it. When we call fetchData(dispatch) directly, the function does not go through Redux middleware. This means we lose the ability to leverage middleware features such as logging, centralized error handling, batching actions, or analytics.
 
 2. redux-persist: Allows persisting and rehydrating the Redux store across page reloads. It stores a subset of the state in local storage, session storage, or other storage engines.
 

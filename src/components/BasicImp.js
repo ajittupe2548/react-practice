@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 const ADD = 'ADD';
 const SUBTRACT = 'SUBTRACT';
@@ -127,7 +129,20 @@ const fetchProductsFailure = (data) => {
     }
 }
 
-const store = createStore(combineReducers({ basic: counterReducer, advance: multiReducer, products: asyncReducer }));
+const store = createStore(combineReducers({ basic: counterReducer, advance: multiReducer, products: asyncReducer }), applyMiddleware(logger, thunk));
+
+const fetchData = () => async (dispatch) => {
+    dispatch(fetchProducts());
+    try {
+        const res = await fetch('https://dummyjson.com/products');
+        const data = await res.json();
+        dispatch(fetchProductsSuccess(data.products));
+    }
+    catch (err) {
+        dispatch(fetchProductsFailure(err));
+        console.log(err)
+    }
+}
 
 const Addition = () => {
     const count = useSelector(state => state.basic);
@@ -185,20 +200,7 @@ const Products = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-
-        const fetchData = async () => {
-            dispatch(fetchProducts());
-            try {
-                const res = await fetch('https://dummyjson.com/products');
-                const data = await res.json();
-                dispatch(fetchProductsSuccess(data.products));
-            }
-            catch (err) {
-                dispatch(fetchProductsFailure(err));
-                console.log(err)
-            }
-        }
-        fetchData();
+        dispatch(fetchData());
     }, []);
     return (
         <div>
