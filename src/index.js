@@ -43,6 +43,33 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // }, 1000);
 /* Reconciliation end */
 
+/* Key's importance start */
+// const Input = ({ placeholder }) => {
+//   const [value, setValue] = useState('');
+
+//   const handleChange = (e) => {
+//     setValue(e.target.value);
+//   }
+
+//   return (
+//     <input type='text' placeholder={placeholder} onChange={handleChange} value={value} />
+//   )
+// }
+
+// const App = () => {
+//   const [isEmail, setIsEmail] = useState(false);
+//   return (
+//     <>
+//       {
+//         isEmail ? <Input placeholder='Email' /> : <Input placeholder='Name' />
+//       }
+//       <button onClick={() => setIsEmail(prev => !prev)}>{isEmail ? 'Email' : 'Name'}</button>
+//     </>
+//   );
+// };
+
+/* Key's importance end */
+
 /* Lists start */
 /* https://codepen.io/gopinav/pen/gQpepq */
 // const App = () => {
