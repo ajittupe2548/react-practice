@@ -1,0 +1,17 @@
+.boardContainer {
+    display: flex;
+}
+
+.listContainer {
+    min-width: 260px;
+    border: 1px solid #aaa;
+}
+
+.listName {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardInput {
+    width: 100px;
+}
