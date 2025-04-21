@@ -12,20 +12,7 @@ import BasicImp from './components/BasicImp';
 
 function App() {
   return (
-    <Provider store={store}>
-      <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-        <div className="App">
-          <UserContainer />
-          <ItemContainer />
-          <ItemContainer cake />
-          <CakeContainer />
-          <HooksCakeContainer />
-          <IceCreamContainer />
-          <NewCakeContainer />
-          <BasicImp />
-        </div>
-      </PersistGate>
-    </Provider>
+    <BasicImp />
   );
 }
 
