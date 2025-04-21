@@ -1,10 +1,12 @@
 import './App.css';
 import CHome from './Components/CHome';
+import ErrorBoundaryExample from './Components/withErrorBoundary';
 
 function App() {
   return (
     <div className="App">
       <CHome/>
+      <ErrorBoundaryExample />
     </div>
   );
 }
