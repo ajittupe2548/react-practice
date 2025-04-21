@@ -6,10 +6,6 @@ import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// root.render(
-//   <App />
-// );
-
 /* Reconciliation start */
 // const App = () => {
 //   const [className, setClassName] = useState('blue');
@@ -46,6 +42,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 /* Key's importance start */
 // const Input = ({ placeholder }) => {
 //   const [value, setValue] = useState('');
+
+//   useEffect(() => {
+//     console.log('Mounted');
+//   }, []);
 
 //   const handleChange = (e) => {
 //     setValue(e.target.value);
