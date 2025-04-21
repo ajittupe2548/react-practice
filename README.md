@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Branches as on 25/11/2024
+
+| Count | Branch name   |
+| ----- | ------------- |
+| 12    | main          |
+| 22    | advance       |
+| 10    | api           |
+| 08    | hooks         |
+| 07    | overeracted   |
+| 03    | poc           |
+| 20    | namaste-react |
+| 01    | master        |
+| 83    | Total         |
