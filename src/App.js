@@ -8,11 +8,11 @@ import IceCreamContainer from './components/IceCreamContainer';
 import NewCakeContainer from './components/NewCakeContainer';
 import ItemContainer from './components/ItemContainer';
 import UserContainer from './components/UserContainer';
-import BasicImp from './components/BasicImp';
+import BasicImpV2 from './components/BasicImpV2';
 
 function App() {
   return (
-    <BasicImp />
+    <BasicImpV2 />
   );
 }
 
