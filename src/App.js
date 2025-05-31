@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import './App.css';
 import CHome from './Components/CHome';
 import FHome from './Components/FHome';
@@ -46,15 +46,15 @@ import { CountProvider, } from './Components/CountContext';
 // Updating Context from a Nested Component - It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
 
 function App() {
-  const [count, setCount] = useState({counter:0});
+  const [count, setCount] = useState({ counter: 0 });
   const handleCount = shouldIncrement => {
-    shouldIncrement ? setCount({counter: count.counter+1}) : setCount({counter: count.counter-1});
+    shouldIncrement ? setCount({ counter: count.counter + 1 }) : setCount({ counter: count.counter - 1 });
   }
   return (
     <div className="App">
       <ThemeProvider value={"Dark"}>
         <UserProvider value={"Ajit"}>
-          <CountProvider value={{count, handleCount}}>
+          <CountProvider value={{ count, handleCount }}>
             <FHome />
             <CHome />
           </CountProvider>

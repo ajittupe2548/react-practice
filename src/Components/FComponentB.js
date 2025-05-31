@@ -1,12 +1,12 @@
-import React, {useContext} from 'react'
-import { ThemeConsumer } from './ThemeContext'
-import { UserConsumer } from './UserContext'
-import { CountConsumer } from './CountContext';
+import React, { useContext } from 'react'
+import { ThemeContext } from './ThemeContext'
+import { UserContext } from './UserContext'
+import { CountContext } from './CountContext';
 
 export default function FComponentB() {
-    const Theme = useContext(ThemeConsumer)
-    const User = useContext(UserConsumer)
-    const {count, handleCount } = useContext(CountConsumer);
+    const Theme = useContext(ThemeContext)
+    const User = useContext(UserContext)
+    const { count, handleCount } = useContext(CountContext);
     return (
         <>
             <div>Function B - {Theme} - {User} {count.counter}</div>
