@@ -1,0 +1,164 @@
+/* CountryCard.css */
+.country-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.country-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.country-card-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.country-emoji {
+    font-size: 2.5rem;
+    margin-right: 15px;
+}
+
+.country-basic-info {
+    flex: 1;
+}
+
+.country-name {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.country-code {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.country-card-body {
+    padding: 15px;
+}
+
+.country-info {
+    margin-bottom: 15px;
+}
+
+.country-info p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.country-info strong {
+    color: #333;
+    min-width: 80px;
+    display: inline-block;
+}
+
+.details-btn {
+    width: 100%;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.details-btn:hover:not(:disabled) {
+    background: #218838;
+}
+
+.details-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.country-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.error-details {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.languages-section,
+.states-section {
+    margin-bottom: 15px;
+}
+
+.languages-section h4,
+.states-section h4 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.languages-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.languages-list li {
+    background: #f8f9fa;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.states-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.state-tag {
+    background: #e9ecef;
+    color: #495057;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.state-tag.more {
+    background: #6c757d;
+    color: white;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .country-card-header {
+        padding: 12px;
+    }
+
+    .country-emoji {
+        font-size: 2rem;
+        margin-right: 10px;
+    }
+
+    .country-name {
+        font-size: 1.1rem;
+    }
+
+    .country-card-body {
+        padding: 12px;
+    }
+}
