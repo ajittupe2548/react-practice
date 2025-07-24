@@ -13,8 +13,8 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App">
         <header className="App-header">
-          <h1>🌍 GraphQL Countries Explorer</h1>
-          <p>Explore countries around the world using GraphQL</p>
+          <h1>🚀 GraphQL Countries Example</h1>
+          <p>Custom GraphQL server with countries data</p>
         </header>
 
         <main className="App-main">
@@ -33,14 +33,7 @@ function App() {
 
         <footer className="App-footer">
           <p>
-            Built with React & GraphQL | Data from{' '}
-            <a
-              href="https://countries.trevorblades.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Countries GraphQL API
-            </a>
+            Built with React & GraphQL | Custom Apollo Server
           </p>
         </footer>
       </div>
