@@ -1,0 +1,39 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+}
+
+.item {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.img, .overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    backface-visibility: hidden;
+}
+
+.img {
+    transform: rotateY(180deg);
+}
+
+.item.flipped .img {
+    transform: rotateY(0deg);
+}
+
+.overlay {
+    transform: rotateY(0deg);
+    background: green;
+}
+
+.item.flipped .overlay {
+    transform: rotateY(180deg);
+}
