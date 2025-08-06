@@ -1,233 +1,176 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import { takeLatest, put, call } from 'redux-saga/effects';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const ADD = 'ADD';
-const SUBTRACT = 'SUBTRACT';
-const MULTIPLY = 'MULTIPLY';
-const DIVIDE = 'DIVIDE';
-const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
-const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
-const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
-
-const addValue = (value) => {
-    return {
-        type: ADD,
-        payload: {
-            value,
-        }
-    }
-}
-
-const subtractValue = (value) => {
-    return {
-        type: SUBTRACT,
-        payload: {
-            value,
-        }
-    }
-}
-
-const multiplyBy = value => {
-    return {
-        type: MULTIPLY,
-        payload: {
-            value,
-        }
-    }
-}
-
-const divideBy = value => {
-    return {
-        type: DIVIDE,
-        payload: {
-            value,
-        }
-    }
-}
-
-const defaultValue = 20;
-
-const counterReducer = (state = defaultValue, action) => {
+const basicDefault = 10;
+const basicReducer = (state = basicDefault, action) => {
     switch (action.type) {
-        case ADD:
-            return state + action.payload.value;
-        case SUBTRACT:
-            return state - action.payload.value;
+        case 'add':
+            return state + action.value;
+        case 'subtract':
+            return state - action.value;
         default:
             return state;
     }
 }
 
-const multiply = 100;
-const multiReducer = (state = multiply, action) => {
-    switch (action.type) {
-        case MULTIPLY:
-            return state * action.payload.value;
-
-        case DIVIDE:
-            return Math.floor(state / action.payload.value);
-
-        default:
-            return state;
-    }
-}
-
-const init = {
-    data: [],
+const thunkStateDefault = {
     loading: false,
-    error: ''
+    data: [],
+    err: ''
 }
-
-const asyncReducer = (state = init, action) => {
+const thunkReducer = (state = thunkStateDefault, action) => {
     switch (action.type) {
-        case FETCH_PRODUCTS:
-            return {
-                ...state,
-                loading: true,
-            };
-        case FETCH_PRODUCTS_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                data: action.payload.data,
-            }
-        case FETCH_PRODUCTS_FAILURE:
-            return {
-                ...state,
-                loading: false,
-                error: action.payload.data,
-            }
+        case 'thunk_init':
+            return { ...state, loading: true }
+
+        case 'thunk_success':
+            return { ...state, data: action.data, loading: false }
+
+        case 'thunk_failure':
+            return { ...state, err: action.data, loading: false }
+
         default:
             return state;
     }
 }
-
-const fetchProducts = () => {
-    return {
-        type: FETCH_PRODUCTS,
-    }
-}
-
-const fetchProductsSuccess = (data) => {
-    return {
-        type: FETCH_PRODUCTS_SUCCESS,
-        payload: {
-            data,
-        }
-    }
-}
-
-const fetchProductsFailure = (data) => {
-    return {
-        type: FETCH_PRODUCTS_FAILURE,
-        payload: {
-            data,
-        }
-    }
-}
-
-const store = createStore(combineReducers({ basic: counterReducer, advance: multiReducer, products: asyncReducer }), applyMiddleware(logger, thunk));
 
 const fetchData = () => async (dispatch) => {
-    dispatch(fetchProducts());
+    dispatch({ type: 'thunk_init' });
     try {
-        const res = await fetch('https://dummyjson.com/products');
+        const res = await fetch('https://dummyjson.com/products?limit=5&skip=0');
         const data = await res.json();
-        dispatch(fetchProductsSuccess(data.products));
+
+        dispatch({ type: 'thunk_success', data: data.products });
     }
-    catch (err) {
-        dispatch(fetchProductsFailure(err));
-        console.log(err)
+    catch (data) {
+        dispatch({ type: 'thunk_failure', data });
     }
 }
 
-const Addition = () => {
-    const count = useSelector(state => state.basic);
-    const dispatch = useDispatch();
+const sagaStateDefault = {
+    loading: false,
+    data: [],
+    err: ''
+}
+const sagaReducer = (state = sagaStateDefault, action) => {
+    switch (action.type) {
+        case 'saga_init':
+            return { ...state, loading: true }
 
-    return (
-        <div>
-            <div>Child1 count - {count}</div>
-            <button onClick={() => dispatch(addValue(1))}>Add</button>
-            <Multiplication />
-        </div>
-    )
+        case 'saga_success':
+            return { ...state, data: action.data, loading: false }
+
+        case 'saga_failure':
+            return { ...state, err: action.data, loading: false }
+
+        default:
+            return state;
+    }
 }
 
-const Subtraction = () => {
-    const count = useSelector(state => state.basic);
-    const dispatch = useDispatch();
-
-    return (
-        <div>
-            <div>Child2 count - {count}</div>
-            <button onClick={() => dispatch(subtractValue(1))}>Subtract</button>
-            <Products />
-        </div>
-    )
+function* fetchDataSaga() {
+    yield put({ type: 'saga_init' });
+    try {
+        const res = yield call(fetch, 'https://dummyjson.com/products?limit=5&skip=5');
+        const data = yield call([res, 'json']);
+        yield put({ type: 'saga_success', data: data.products });
+    } catch (err) {
+        yield put({ type: 'saga_failure', data: err.message });
+    }
 }
 
-const Multiplication = (value) => {
-    const count = useSelector(state => state.advance);
-    const dispatch = useDispatch();
-
-    return (
-        <div>
-            <div>GrandChild1 count - {count}</div>
-            <button onClick={() => dispatch(multiplyBy(2))}>Multiply</button>
-            <Division />
-        </div>
-    )
+function* rootSaga() {
+    yield takeLatest('FETCH_SAGA', fetchDataSaga);
 }
 
-const Division = (value) => {
-    const count = useSelector(state => state.advance);
-    const dispatch = useDispatch();
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+    combineReducers({ basic: basicReducer, thunkState: thunkReducer, sagaState: sagaReducer }),
+    composeWithDevTools(applyMiddleware(thunk, sagaMiddleware))
+);
+sagaMiddleware.run(rootSaga);
 
+function Child() {
+    const dispatch = useDispatch();
+    const basic = useSelector(state => state.basic);
     return (
         <div>
-            <div>GrandChild2 count - {count}</div>
-            <button onClick={() => dispatch(divideBy(2))}>Divide</button>
+            <p>Basic Reducer</p>
+            <hr />
+            <button onClick={() => dispatch({ type: 'add', value: 1 })}>+ Basic</button>
+            Basic - {basic}
+            <button onClick={() => dispatch({ type: 'subtract', value: 1 })}>- Basic</button>
+            <GrandChild />
         </div>
-    )
+    );
 }
 
-const Products = () => {
-    const { loading, error, data } = useSelector(state => state.products);
+function GrandChild() {
+    const basic = useSelector(state => state.basic);
+    return (
+        <div>GrandChild - {basic}</div>
+    );
+}
+
+function Items() {
     const dispatch = useDispatch();
+    const { loading, err, data } = useSelector(state => state.thunkState);
 
     useEffect(() => {
         dispatch(fetchData());
     }, []);
+
     return (
-        <div>
-            Products:
+        <>
+            <br />
+            <p>React Thunk</p>
+            <hr />
             <ul>
                 {
-                    loading
-                        ? <li>Loading...</li>
-                        : error
-                            ? <li>Error</li>
-                            : data && data.length > 0
-                                ? data.map((item, index) => <li key={index}>{item.title}</li>)
-                                : null
+                    err ? err : loading ? 'loading' :
+                        data.filter((item, index) => index < 5).map((item, index) => <li key={index}>{item.title}</li>)
                 }
             </ul>
-        </div>
+        </>
+    )
+}
+
+function ItemsSaga() {
+    const dispatch = useDispatch();
+    const { loading, err, data } = useSelector(state => state.sagaState);
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_SAGA' });
+    }, []);
+
+    return (
+        <>
+            <br />
+            <p>Redux Saga</p>
+            <hr />
+            <ul>
+                {
+                    err ? err : loading ? 'loading' :
+                        data.filter((item, index) => index < 5).map((item, index) => <li key={index}>{item.title}</li>)
+                }
+            </ul>
+        </>
     )
 }
 
 function BasicImp() {
     return (
         <Provider store={store}>
-            <div>BasicImp</div>
-            <Addition />
-            <Subtraction />
+            <Child />
+            <Items />
+            <ItemsSaga />
         </Provider>
     )
 }
 
-export default BasicImp
+export default BasicImp;
