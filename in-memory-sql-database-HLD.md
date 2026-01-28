@@ -44,22 +44,22 @@ Design of a client-side architecture for interacting with an in-memory SQL datab
 ## Requirements
 
 ### Functional Requirements
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| F1 | Execute SQL queries (SELECT, INSERT, UPDATE, DELETE) | High |
-| F2 | Subscribe to real-time table updates | High |
-| F3 | Transaction management (begin, commit, rollback) | Medium |
-| F4 | Schema introspection | Low |
-| F5 | Parameterized queries | High |
+| ID  | Requirement                                          | Priority |
+| --- | ---------------------------------------------------- | -------- |
+| F1  | Execute SQL queries (SELECT, INSERT, UPDATE, DELETE) | High     |
+| F2  | Subscribe to real-time table updates                 | High     |
+| F3  | Transaction management (begin, commit, rollback)     | Medium   |
+| F4  | Schema introspection                                 | Low      |
+| F5  | Parameterized queries                                | High     |
 
 ### Non-Functional Requirements
-| ID | Requirement | Target |
-|----|-------------|--------|
-| NF1 | Query latency | < 100ms (p95) |
-| NF2 | Concurrent connections | 10,000+ |
-| NF3 | System uptime | 99.9% |
-| NF4 | Reconnection time | < 3 seconds |
-| NF5 | Bundle size | < 50KB (gzipped) |
+| ID  | Requirement            | Target           |
+| --- | ---------------------- | ---------------- |
+| NF1 | Query latency          | < 100ms (p95)    |
+| NF2 | Concurrent connections | 10,000+          |
+| NF3 | System uptime          | 99.9%            |
+| NF4 | Reconnection time      | < 3 seconds      |
+| NF5 | Bundle size            | < 50KB (gzipped) |
 
 ---
 
@@ -663,14 +663,14 @@ Invalidation Examples:
 
 ### Error Categories
 
-| Error Type | Code | Retry? | User Action |
-|------------|------|--------|-------------|
-| Network Error | NETWORK_ERROR | Yes | Show retry button |
-| Timeout | TIMEOUT | Yes | Increase timeout or retry |
-| SQL Syntax | SYNTAX_ERROR | No | Show error message |
-| Permission | PERMISSION_DENIED | No | Show access denied |
-| Server Error | INTERNAL_ERROR | Yes | Retry with backoff |
-| Rate Limit | RATE_LIMIT | Yes | Wait and retry |
+| Error Type    | Code              | Retry? | User Action               |
+| ------------- | ----------------- | ------ | ------------------------- |
+| Network Error | NETWORK_ERROR     | Yes    | Show retry button         |
+| Timeout       | TIMEOUT           | Yes    | Increase timeout or retry |
+| SQL Syntax    | SYNTAX_ERROR      | No     | Show error message        |
+| Permission    | PERMISSION_DENIED | No     | Show access denied        |
+| Server Error  | INTERNAL_ERROR    | Yes    | Retry with backoff        |
+| Rate Limit    | RATE_LIMIT        | Yes    | Wait and retry            |
 
 ### Retry Strategy
 
@@ -844,13 +844,13 @@ SELECT * FROM users WHERE id > lastSeenId LIMIT 20
 
 ### 1. REST vs GraphQL vs SQL
 
-| Aspect | REST | GraphQL | Direct SQL |
-|--------|------|---------|------------|
-| **Flexibility** | Low | High | Highest |
-| **Learning Curve** | Low | Medium | High |
-| **Over-fetching** | Common | Rare | None |
-| **Type Safety** | Manual | Built-in | Manual |
-| **Caching** | Easy | Complex | Easy |
+| Aspect             | REST   | GraphQL  | Direct SQL |
+| ------------------ | ------ | -------- | ---------- |
+| **Flexibility**    | Low    | High     | Highest    |
+| **Learning Curve** | Low    | Medium   | High       |
+| **Over-fetching**  | Common | Rare     | None       |
+| **Type Safety**    | Manual | Built-in | Manual     |
+| **Caching**        | Easy   | Complex  | Easy       |
 
 **Decision**: Direct SQL with parameterization
 - **Pros**: Maximum flexibility, familiar to backend devs
@@ -858,12 +858,12 @@ SELECT * FROM users WHERE id > lastSeenId LIMIT 20
 
 ### 2. WebSocket vs SSE vs Polling
 
-| Aspect | WebSocket | SSE | Long Polling |
-|--------|-----------|-----|--------------|
-| **Bidirectional** | Yes | No | Yes |
-| **Browser Support** | Excellent | Good | Universal |
-| **Complexity** | High | Low | Medium |
-| **Efficiency** | Highest | High | Low |
+| Aspect              | WebSocket | SSE  | Long Polling |
+| ------------------- | --------- | ---- | ------------ |
+| **Bidirectional**   | Yes       | No   | Yes          |
+| **Browser Support** | Excellent | Good | Universal    |
+| **Complexity**      | High      | Low  | Medium       |
+| **Efficiency**      | Highest   | High | Low          |
 
 **Decision**: WebSocket for real-time
 - **Pros**: Bidirectional, efficient, low latency
@@ -871,10 +871,10 @@ SELECT * FROM users WHERE id > lastSeenId LIMIT 20
 
 ### 3. Optimistic vs Pessimistic Updates
 
-| Approach | UX | Complexity | Risk |
-|----------|-----|------------|------|
-| **Optimistic** | Instant | High | Rollback needed |
-| **Pessimistic** | Delayed | Low | No rollback |
+| Approach        | UX      | Complexity | Risk            |
+| --------------- | ------- | ---------- | --------------- |
+| **Optimistic**  | Instant | High       | Rollback needed |
+| **Pessimistic** | Delayed | Low        | No rollback     |
 
 **Decision**: Optimistic for mutations
 - **Pros**: Better UX, feels instant
@@ -882,10 +882,10 @@ SELECT * FROM users WHERE id > lastSeenId LIMIT 20
 
 ### 4. Client-Side Joins vs Server-Side
 
-| Approach | Network | Processing | Flexibility |
-|----------|---------|------------|-------------|
-| **Client-Side** | Multiple requests | Client CPU | High |
-| **Server-Side** | Single request | Server CPU | Low |
+| Approach        | Network           | Processing | Flexibility |
+| --------------- | ----------------- | ---------- | ----------- |
+| **Client-Side** | Multiple requests | Client CPU | High        |
+| **Server-Side** | Single request    | Server CPU | Low         |
 
 **Decision**: Server-side joins primarily
 - **Pros**: Efficient, less network overhead
