@@ -1,0 +1,13 @@
+.app {
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    margin: auto;
+}
+
+.child {
+    height: 50px;
+    width: 50px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
